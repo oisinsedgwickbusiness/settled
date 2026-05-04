@@ -3,4 +3,4 @@ Allow: /
 Disallow: /preview/
 Disallow: /draft/
 
-Sitemap: https://settled.world/sitemap-index.xml
+Sitemap: https://settled.world/sitemap.xml
