@@ -23,6 +23,10 @@ const articles = defineCollection({
     asins: z.array(z.string()).default([]),
     wordCount: z.number().int().nonnegative().default(0),
     draft: z.boolean().default(false),
+    // Optional hero image (URL or /public path). Rendered above article
+    // body when present. Empty/null = no hero.
+    hero: z.string().optional(),
+    heroAlt: z.string().optional(),
   }),
 });
 

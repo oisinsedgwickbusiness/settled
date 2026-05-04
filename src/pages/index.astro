@@ -7,31 +7,47 @@ const articles = (await getCollection("articles", ({ data }) => !data.draft))
     (a, b) =>
       new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
   );
+
+function fmtCategory(c: string) {
+  return c.replace(/-/g, " ");
+}
 ---
 
 <BaseLayout
   title="Settled — considered home goods, recommended honestly"
   description="Long-form picks for small-space kitchens. Real testing, no fluff, picks made on merit."
+  wide
 >
-  <h1>Picks for small-space kitchens</h1>
-  <p>
-    We test things that are supposed to make a small kitchen work. The picks
-    that make it through stay in our kitchens; the rest go in the donate pile.
-    Below is the running record.
-  </p>
+  <section class="index-hero">
+    <h1>Picks for small-space kitchens.</h1>
+    <p>We test what's supposed to make a small kitchen work. The picks that earn their place stay; the rest go in the donate pile.</p>
+  </section>
 
   {articles.length === 0 && (
-    <p style="color: var(--muted); font-style: italic;">
+    <p style="color: var(--muted); font-style: italic; text-align: center;">
       First article coming soon.
     </p>
   )}
 
-  <ul class="article-index">
+  {articles.length > 0 && (
+    <div class="section-rule">The Edit</div>
+  )}
+
+  <ul class="article-grid">
     {articles.map((a) => (
       <li>
-        <a href={`/${a.slug}`}>
+        <a class="article-card" href={`/${a.slug}`}>
+          <div class="article-card__category">
+            {fmtCategory(a.data.category)}
+          </div>
           <h2>{a.data.title}</h2>
-          <p>{a.data.description}</p>
+          <p class="article-card__desc">{a.data.description}</p>
+          <div class="article-card__meta">
+            {new Date(a.data.date).toLocaleDateString("en-US", {
+              year: "numeric", month: "short", day: "numeric",
+            })}
+            · {Math.max(1, Math.round(a.data.wordCount / 220))} min read
+          </div>
         </a>
       </li>
     ))}

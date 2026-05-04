@@ -6,9 +6,10 @@ interface Props {
   description: string;
   canonical?: string;
   ogType?: "website" | "article";
+  wide?: boolean;
 }
 
-const { title, description, canonical, ogType = "website" } = Astro.props;
+const { title, description, canonical, ogType = "website", wide = false } = Astro.props;
 const siteUrl = "https://settled.world";
 const fullCanonical = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 ---
@@ -49,21 +50,31 @@ const fullCanonical = canonical ?? new URL(Astro.url.pathname, siteUrl).toString
   <body>
     <header class="site-nav">
       <div class="site-nav__inner">
-        <a class="site-nav__brand" href="/">
-          Settled <small>considered home goods, recommended honestly</small>
-        </a>
-        <nav class="site-nav__links" aria-label="Primary">
+        <nav class="site-nav__links site-nav__links--left" aria-label="Primary">
           <a href="/">Articles</a>
           <a href="/about">About</a>
         </nav>
+        <a class="site-nav__brand" href="/" aria-label="Settled — home">
+          <img src="/logo.svg" alt="" aria-hidden="true" />
+          <span class="site-nav__brand-text">Settled</span>
+        </a>
+        <nav class="site-nav__links site-nav__links--right" aria-label="Secondary">
+          <a href="/editorial-policy">Policy</a>
+          <a href="/rss.xml">RSS</a>
+        </nav>
       </div>
+      <p class="site-nav__tagline">Considered home goods, recommended honestly.</p>
     </header>
 
-    <main>
+    <main class={wide ? "wide" : undefined}>
       <slot />
     </main>
 
     <footer class="site-foot">
+      <div class="site-foot__brand">
+        <img src="/logo.svg" alt="" aria-hidden="true" />
+        Settled
+      </div>
       <p>
         <strong>Affiliate disclosure.</strong> Some links on Settled are
         affiliate links. If you click and buy, we may earn a small commission
@@ -71,7 +82,7 @@ const fullCanonical = canonical ?? new URL(Astro.url.pathname, siteUrl).toString
         payment to include a product.
         <a href="/editorial-policy">Read the full editorial policy.</a>
       </p>
-      <p>
+      <p class="site-foot__legal">
         © {new Date().getFullYear()} Settled. As an Amazon Associate we earn
         from qualifying purchases.
       </p>

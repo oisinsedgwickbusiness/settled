@@ -7,22 +7,33 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, description, date, category, wordCount } = entry.data;
+const { title, description, date, category, wordCount, hero } = entry.data;
 const dateFmt = new Date(date).toLocaleDateString("en-US", {
   year: "numeric", month: "long", day: "numeric",
 });
 const minutes = Math.max(1, Math.round(wordCount / 220));
+
+function fmtCategory(c: string) {
+  return c.replace(/-/g, " ");
+}
 ---
 
 <BaseLayout title={title} description={description} ogType="article">
   <article>
     <header class="article-header">
-      <div class="article-header__meta">
-        {dateFmt} · {minutes} min read · {category.replace(/-/g, " ")}
-      </div>
+      <div class="article-header__category">{fmtCategory(category)}</div>
       <h1>{title}</h1>
       <p class="article-header__subhead">{description}</p>
+      <div class="article-header__meta">
+        {dateFmt} · {minutes} min read
+      </div>
     </header>
+
+    {hero && (
+      <figure class="article-hero">
+        <img src={hero} alt="" loading="eager" />
+      </figure>
+    )}
 
     <slot />
   </article>
