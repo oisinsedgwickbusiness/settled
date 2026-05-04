@@ -1,6 +1,5 @@
 ---
 title: "Magnetic knife strips: what actually matters in a small kitchen"
-slug: "magnetic-knife-strips-small-kitchens"
 description: "A buying guide for small-space kitchens. The criteria that matter, the failure modes to avoid, and how to think about price."
 date: "2026-05-04T11:30:00Z"
 category: "small-space-kitchen"

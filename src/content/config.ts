@@ -5,11 +5,16 @@
 
 import { defineCollection, z } from "astro:content";
 
+// Note: `slug` is intentionally NOT in the schema. Astro 4.x reserves
+// `slug` as a special frontmatter field — defining it in the zod schema
+// makes the content collection silently exclude the article from
+// getCollection() while leaving the rest of the build green. The
+// auto-generated slug (derived from the filename) is what gets used at
+// runtime via entry.slug.
 const articles = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string().min(20).max(120),
-    slug: z.string(),
     description: z.string().min(20).max(200),
     date: z.coerce.date(),
     category: z.string(),

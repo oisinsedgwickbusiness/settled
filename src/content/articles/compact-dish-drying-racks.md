@@ -1,6 +1,5 @@
 ---
 title: "Compact dish drying racks: what actually earns the counter space"
-slug: "compact-dish-drying-racks"
 description: "A buying guide for small kitchens. Drainage, footprint, materials, and the failure modes that matter."
 date: "2026-05-02T13:15:00Z"
 category: "small-space-kitchen"

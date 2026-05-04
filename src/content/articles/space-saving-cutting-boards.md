@@ -1,6 +1,5 @@
 ---
 title: "Space-saving cutting boards: what to look for in a small kitchen"
-slug: "space-saving-cutting-boards"
 description: "A buying guide for small-kitchen prep. Material trade-offs, storage solutions, and what wears out fastest."
 date: "2026-04-29T10:00:00Z"
 category: "small-space-kitchen"
