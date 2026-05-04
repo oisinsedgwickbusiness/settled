@@ -8,6 +8,8 @@ pickCount: 3
 asins: ["B01C897VLG", "B000Q1DB72", "B08196DX71"]
 wordCount: 1080
 draft: false
+hero: "https://images.unsplash.com/photo-1771627278637-10eb2e9857b5?w=1600&q=80&auto=format&fit=crop"
+heroAlt: "Clean dishes drying beside a small kitchen sink"
 ---
 
 # Three dish drying racks worth your counter: a small-kitchen roundup

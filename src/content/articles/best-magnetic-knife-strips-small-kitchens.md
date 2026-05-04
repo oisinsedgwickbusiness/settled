@@ -8,6 +8,8 @@ pickCount: 3
 asins: ["B00BV7SA30", "B016ISHAC8", "B08KRPGSN6"]
 wordCount: 1080
 draft: false
+hero: "https://images.unsplash.com/photo-1690368675879-73bf1fb404d0?w=1600&q=80&auto=format&fit=crop"
+heroAlt: "Kitchen knives mounted on a magnetic strip on the wall"
 ---
 
 # Three magnetic knife strips worth your wall: a small-kitchen roundup

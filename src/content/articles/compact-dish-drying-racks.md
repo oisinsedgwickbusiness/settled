@@ -8,6 +8,8 @@ pickCount: 0
 asins: []
 wordCount: 850
 draft: false
+hero: "https://images.unsplash.com/photo-1706486540578-1913e17f374d?w=1600&q=80&auto=format&fit=crop"
+heroAlt: "A small kitchen sink with dishes drying near a window"
 ---
 
 # Compact dish drying racks: what actually earns the counter space

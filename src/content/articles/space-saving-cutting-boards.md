@@ -8,6 +8,8 @@ pickCount: 0
 asins: []
 wordCount: 870
 draft: false
+hero: "https://images.unsplash.com/photo-1765120828282-63dc950b6f90?w=1600&q=80&auto=format&fit=crop"
+heroAlt: "Wooden cutting boards showing natural grain patterns"
 ---
 
 # Space-saving cutting boards: what to look for in a small kitchen

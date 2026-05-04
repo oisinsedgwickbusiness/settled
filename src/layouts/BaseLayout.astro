@@ -7,11 +7,46 @@ interface Props {
   canonical?: string;
   ogType?: "website" | "article";
   wide?: boolean;
+  image?: string;             // Open Graph + Twitter card image
+  publishedAt?: string;       // ISO date for article pages
+  modifiedAt?: string;
+  jsonLd?: object | object[]; // structured-data payload merged into <head>
 }
 
-const { title, description, canonical, ogType = "website", wide = false } = Astro.props;
+const {
+  title, description, canonical, ogType = "website",
+  wide = false, image, publishedAt, modifiedAt, jsonLd,
+} = Astro.props;
+
 const siteUrl = "https://settled.world";
 const fullCanonical = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const ogImage = image ?? `${siteUrl}/og-default.png`;
+
+// Default sitewide structured data: WebSite + Organization. Article
+// pages add their own Article + BreadcrumbList via the jsonLd prop.
+const defaultJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Settled",
+    url: siteUrl,
+    description: "Considered home goods, recommended honestly. Long-form picks for small-space kitchens.",
+    publisher: { "@id": `${siteUrl}#organization` },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${siteUrl}#organization`,
+    name: "Settled",
+    url: siteUrl,
+    logo: `${siteUrl}/logo.svg`,
+    sameAs: [],
+  },
+];
+
+const allJsonLd = jsonLd
+  ? defaultJsonLd.concat(Array.isArray(jsonLd) ? jsonLd : [jsonLd])
+  : defaultJsonLd;
 ---
 
 <!doctype html>
@@ -25,19 +60,35 @@ const fullCanonical = canonical ?? new URL(Astro.url.pathname, siteUrl).toString
     <meta name="description" content={description} />
     <link rel="canonical" href={fullCanonical} />
 
+    <!-- Robots / discovery -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="Settled editorial" />
+    <meta name="theme-color" content="#265449" />
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={fullCanonical} />
     <meta property="og:site_name" content="Settled" />
+    <meta property="og:locale" content="en_US" />
+    {image && <meta property="og:image" content={ogImage} />}
+    {publishedAt && <meta property="article:published_time" content={publishedAt} />}
+    {modifiedAt && <meta property="article:modified_time" content={modifiedAt} />}
 
     <!-- Twitter card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    {image && <meta name="twitter:image" content={ogImage} />}
 
-    <!-- RSS -->
+    <!-- Structured data (JSON-LD) — feeds search engines + AI engines -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(allJsonLd)}
+    />
+
+    <!-- Feeds -->
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -55,7 +106,6 @@ const fullCanonical = canonical ?? new URL(Astro.url.pathname, siteUrl).toString
           <a href="/about">About</a>
         </nav>
         <a class="site-nav__brand" href="/" aria-label="Settled — home">
-          <img src="/logo.svg" alt="" aria-hidden="true" />
           <span class="site-nav__brand-text">Settled</span>
         </a>
         <nav class="site-nav__links site-nav__links--right" aria-label="Secondary">

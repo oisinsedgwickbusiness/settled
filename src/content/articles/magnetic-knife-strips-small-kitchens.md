@@ -8,6 +8,8 @@ pickCount: 0
 asins: []
 wordCount: 880
 draft: false
+hero: "https://images.unsplash.com/photo-1632334994199-cc2ba6538141?w=1600&q=80&auto=format&fit=crop"
+heroAlt: "A small kitchen counter with a cutting board, knives, and storage"
 ---
 
 # Magnetic knife strips: what actually matters in a small kitchen

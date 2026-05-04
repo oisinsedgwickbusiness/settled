@@ -1,0 +1,41 @@
+# Settled
+
+> Long-form picks for small-space kitchens. Considered home goods,
+> recommended honestly. Buying guides and product round-ups based on
+> spec sheets, listing review consensus, and reputable third-party
+> coverage — not fabricated first-person testing.
+
+We cover the small-space-kitchen niche: knife storage, dish drying
+racks, cutting boards, and similar small-kitchen prep equipment. We
+don't claim to lab-test every product. Our picks are framed as
+informed editorial picks based on observable signals.
+
+Affiliate disclosure: links to retailers (primarily Amazon Associates,
+tag `settledworld-20`) are affiliate links. We earn commission on
+qualifying purchases at no extra cost to readers.
+
+## Buying guides
+
+- [Magnetic knife strips: what actually matters in a small kitchen](https://settled.world/magnetic-knife-strips-small-kitchens): bar-style criteria, magnet strength, mounting hardware, length, what to skip.
+- [Compact dish drying racks: what actually earns the counter space](https://settled.world/compact-dish-drying-racks): the three formats (counter, over-sink, roll-up), drainage methods, materials.
+- [Space-saving cutting boards: what to look for in a small kitchen](https://settled.world/space-saving-cutting-boards): edge-grain vs end-grain vs composite, storage approaches, knife-friendliness, maintenance.
+
+## Product round-ups
+
+- [Three magnetic knife strips worth your wall](https://settled.world/best-magnetic-knife-strips-small-kitchens): Messermeister Acacia (B00BV7SA30), Modern Innovations Stainless (B016ISHAC8), Zulay Bamboo (B08KRPGSN6).
+- [Three dish drying racks worth your counter](https://settled.world/best-compact-dish-drying-racks): Yamazaki Tower (B01C897VLG), OXO Folding Stainless (B000Q1DB72), Surpahs Roll-Up (B08196DX71).
+- [Three cutting boards worth your storage slot](https://settled.world/best-space-saving-cutting-boards): Teakhaus Small with juice groove (B001CMT1JG), Epicurean 11.5×9 (B0008221BG), John Boos B Series 9×9 (B000KPVOR8).
+
+## Editorial
+
+- [About Settled](https://settled.world/about)
+- [Editorial policy](https://settled.world/editorial-policy): how picks are made, affiliate disclosure, AI tooling disclosure, corrections.
+
+## Methodology
+
+Each article includes an explicit methodology section. Picks are based
+on: brand track record, Amazon listing review consensus over multi-year
+windows, criteria from the matching buying guide, and reputable third-
+party coverage where available (e.g., America's Test Kitchen). We
+disclose where AI tooling assists drafting; every article is reviewed
+before publication.

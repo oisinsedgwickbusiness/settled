@@ -8,6 +8,8 @@ pickCount: 3
 asins: ["B001CMT1JG", "B0008221BG", "B000KPVOR8"]
 wordCount: 1100
 draft: false
+hero: "https://images.unsplash.com/photo-1624811533744-f85d5325d49c?w=1600&q=80&auto=format&fit=crop"
+heroAlt: "A wooden cutting board with green vegetables ready for prep"
 ---
 
 # Three cutting boards worth your storage slot: a small-kitchen roundup

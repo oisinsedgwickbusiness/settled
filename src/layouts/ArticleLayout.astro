@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, description, date, category, wordCount, hero } = entry.data;
+const { title, description, date, category, wordCount, hero, heroAlt } = entry.data;
 const dateFmt = new Date(date).toLocaleDateString("en-US", {
   year: "numeric", month: "long", day: "numeric",
 });
@@ -16,9 +16,59 @@ const minutes = Math.max(1, Math.round(wordCount / 220));
 function fmtCategory(c: string) {
   return c.replace(/-/g, " ");
 }
+
+const siteUrl = "https://settled.world";
+const articleUrl = `${siteUrl}/${entry.slug}`;
+const isoDate = new Date(date).toISOString();
+
+// Per-article structured data: Article schema for rich-result eligibility,
+// BreadcrumbList for nav structure (helps both Google's SERP and AI
+// engines build a clean understanding of where the article sits).
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  datePublished: isoDate,
+  dateModified: isoDate,
+  author: {
+    "@type": "Organization",
+    name: "Settled editorial",
+    url: siteUrl,
+  },
+  publisher: { "@id": `${siteUrl}#organization` },
+  mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+  url: articleUrl,
+  wordCount: wordCount,
+  articleSection: fmtCategory(category),
+  ...(hero ? { image: hero } : {}),
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: fmtCategory(category),
+      item: `${siteUrl}/?category=${encodeURIComponent(category)}`,
+    },
+    { "@type": "ListItem", position: 3, name: title, item: articleUrl },
+  ],
+};
 ---
 
-<BaseLayout title={title} description={description} ogType="article">
+<BaseLayout
+  title={title}
+  description={description}
+  ogType="article"
+  image={hero}
+  publishedAt={isoDate}
+  modifiedAt={isoDate}
+  jsonLd={[articleJsonLd, breadcrumbJsonLd]}
+>
   <article>
     <header class="article-header">
       <div class="article-header__category">{fmtCategory(category)}</div>
@@ -31,7 +81,13 @@ function fmtCategory(c: string) {
 
     {hero && (
       <figure class="article-hero">
-        <img src={hero} alt="" loading="eager" />
+        <img
+          src={hero}
+          alt={heroAlt ?? ""}
+          loading="eager"
+          width="1600"
+          height="900"
+        />
       </figure>
     )}
 
