@@ -1,0 +1,80 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogType?: "website" | "article";
+}
+
+const { title, description, canonical, ogType = "website" } = Astro.props;
+const siteUrl = "https://settled.world";
+const fullCanonical = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={fullCanonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={fullCanonical} />
+    <meta property="og:site_name" content="Settled" />
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- RSS -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Settled — RSS"
+      href="/rss.xml"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="site-nav__inner">
+        <a class="site-nav__brand" href="/">
+          Settled <small>considered home goods, recommended honestly</small>
+        </a>
+        <nav class="site-nav__links" aria-label="Primary">
+          <a href="/">Articles</a>
+          <a href="/about">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-foot">
+      <p>
+        <strong>Affiliate disclosure.</strong> Some links on Settled are
+        affiliate links. If you click and buy, we may earn a small commission
+        at no extra cost to you. Picks are made on merit — we never accept
+        payment to include a product.
+        <a href="/editorial-policy">Read the full editorial policy.</a>
+      </p>
+      <p>
+        © {new Date().getFullYear()} Settled. As an Amazon Associate we earn
+        from qualifying purchases.
+      </p>
+    </footer>
+  </body>
+</html>

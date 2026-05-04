@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("articles", ({ data }) => !data.draft))
+  .sort(
+    (a, b) =>
+      new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
+  );
+---
+
+<BaseLayout
+  title="Settled — considered home goods, recommended honestly"
+  description="Long-form picks for small-space kitchens. Real testing, no fluff, picks made on merit."
+>
+  <h1>Picks for small-space kitchens</h1>
+  <p>
+    We test things that are supposed to make a small kitchen work. The picks
+    that make it through stay in our kitchens; the rest go in the donate pile.
+    Below is the running record.
+  </p>
+
+  {articles.length === 0 && (
+    <p style="color: var(--muted); font-style: italic;">
+      First article coming soon.
+    </p>
+  )}
+
+  <ul class="article-index">
+    {articles.map((a) => (
+      <li>
+        <a href={`/${a.slug}`}>
+          <h2>{a.data.title}</h2>
+          <p>{a.data.description}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

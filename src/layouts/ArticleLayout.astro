@@ -1,0 +1,29 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"articles">;
+}
+
+const { entry } = Astro.props;
+const { title, description, date, category, wordCount } = entry.data;
+const dateFmt = new Date(date).toLocaleDateString("en-US", {
+  year: "numeric", month: "long", day: "numeric",
+});
+const minutes = Math.max(1, Math.round(wordCount / 220));
+---
+
+<BaseLayout title={title} description={description} ogType="article">
+  <article>
+    <header class="article-header">
+      <div class="article-header__meta">
+        {dateFmt} · {minutes} min read · {category.replace(/-/g, " ")}
+      </div>
+      <h1>{title}</h1>
+      <p class="article-header__subhead">{description}</p>
+    </header>
+
+    <slot />
+  </article>
+</BaseLayout>

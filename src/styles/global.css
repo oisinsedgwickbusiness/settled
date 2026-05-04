@@ -1,0 +1,209 @@
+/* Settled — affiliate site styles.
+ *
+ * Brand voice: utility over rhetorical. The styling matches: system
+ * fonts, generous line-height, narrow measure, subdued palette,
+ * no design noise. Text-first. Anything that would distract from
+ * the recommendation gets cut.
+ */
+
+:root {
+  /* Subdued, warm. Not pure white, not pure black. */
+  --bg: #faf8f4;
+  --fg: #1d1d1b;
+  --muted: #6c6c6a;
+  --rule: #e8e4dc;
+  --accent: #5e4827;          /* warm brown for links */
+  --accent-soft: #f4ede0;     /* soft tint for tables / blockquotes */
+
+  --measure: 65ch;            /* ideal line length for prose */
+  --pad: clamp(1rem, 4vw, 1.5rem);
+
+  --font-prose: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --font-ui: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16140f;
+    --fg: #ece8df;
+    --muted: #9a948a;
+    --rule: #2c2924;
+    --accent: #d6b27a;
+    --accent-soft: #1f1c16;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-prose);
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 2rem var(--pad) 4rem;
+}
+
+h1, h2, h3, h4, .ui {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+h1 { font-size: 2rem; margin-top: 1rem; }
+h2 { font-size: 1.4rem; margin-top: 2.5rem; }
+h3 { font-size: 1.15rem; margin-top: 2rem; }
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.5rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  font-style: italic;
+  color: var(--fg);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0 1.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+}
+th, td {
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+th { color: var(--muted); font-weight: 600; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 3rem 0;
+}
+
+ul, ol { padding-left: 1.4rem; }
+li + li { margin-top: 0.35rem; }
+
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92rem;
+}
+code { background: var(--accent-soft); padding: 0.1em 0.35em; border-radius: 3px; }
+
+/* Site nav */
+.site-nav {
+  font-family: var(--font-ui);
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg);
+}
+.site-nav__inner {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 1rem var(--pad);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.site-nav__brand {
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.site-nav__brand small {
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 0.4rem;
+}
+.site-nav__links {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.site-nav__links a {
+  color: var(--muted);
+  margin-left: 1rem;
+  text-decoration: none;
+}
+.site-nav__links a:hover { color: var(--fg); }
+
+/* Article header */
+.article-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.article-header__meta {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+.article-header__subhead {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+/* Index card */
+.article-index { padding-left: 0; list-style: none; }
+.article-index li {
+  border-bottom: 1px solid var(--rule);
+  padding: 1.25rem 0;
+}
+.article-index a {
+  text-decoration: none;
+  color: var(--fg);
+}
+.article-index h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.2rem;
+}
+.article-index p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-family: var(--font-ui);
+}
+
+/* Footer */
+.site-foot {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  padding: 2rem var(--pad) 3rem;
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+.site-foot p { margin: 0.4rem 0; }
+.site-foot a { color: var(--muted); }
+.site-foot a:hover { color: var(--fg); }
+
+/* Pick CTA — utility framing, not a "buy now" button */
+a[href*="/dp/"], a[href*="amazon."] {
+  font-family: var(--font-ui);
+  font-weight: 500;
+}
